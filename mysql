@@ -1,0 +1,187 @@
+create database school;
+use school;
+create table student(adm_no int primary key,name varchar(100),avg int,sex varchar(100),s_code int);
+insert into student values(501,'R.Jain',98,'M',111);
+insert into student values(545,'Kavitha',73,'F',333);
+insert into student values(754,'Rahul Goel',60,'M',444);
+insert into student values(892,'Sahil Jain',78,'M',333);
+insert into student values(935,'Rohan Saini',85,'M',222);
+insert into student values(955,'Anjali',64,'F',444);
+insert into student values(983,'Sneha Aggarwal',80,'F',222);
+
+select * from student;
++--------+----------------+------+------+--------+
+| adm_no | name           | avg  | sex  | s_code |
++--------+----------------+------+------+--------+
+|    501 | R.Jain         |   98 | M    |    111 |
+|    545 | Kavitha        |   73 | F    |    333 |
+|    705 | K.Rashika      |   85 | F    |    111 |
+|    754 | Rahul Goel     |   60 | M    |    444 |
+|    892 | Sahil Jain     |   78 | M    |    333 |
+|    935 | Rohan Saini    |   85 | M    |    222 |
+|    955 | Anjali         |   64 | F    |    444 |
+|    983 | Sneha Aggarwal |   80 | F    |    222 |
++--------+----------------+------+------+--------+
+
+select * from student where(name="Rohan Saini");
++--------+-------------+------+------+--------+
+| adm_no | name        | avg  | sex  | s_code |
++--------+-------------+------+------+--------+
+|    935 | Rohan Saini |   85 | M    |    222 |
++--------+-------------+------+------+--------+
+
+select count(name) from student;
++-------------+
+| count(name) |
++-------------+
+|           8 |
++-------------+
+
+select count(sex) from student where(sex="M");
++------------+
+| count(sex) |
++------------+
+|          4 |
++------------+
+
+select count(sex) from student where(sex="F");
++------------+
+| count(sex) |
++------------+
+|          4 |
++------------+
+
+
+select * from student order by name;
++--------+----------------+------+------+--------+
+| adm_no | name           | avg  | sex  | s_code |
++--------+----------------+------+------+--------+
+|    955 | Anjali         |   64 | F    |    444 |
+|    705 | K.Rashika      |   85 | F    |    111 |
+|    545 | Kavitha        |   73 | F    |    333 |
+|    501 | R.Jain         |   98 | M    |    111 |
+|    754 | Rahul Goel     |   60 | M    |    444 |
+|    935 | Rohan Saini    |   85 | M    |    222 |
+|    892 | Sahil Jain     |   78 | M    |    333 |
+|    983 | Sneha Aggarwal |   80 | F    |    222 |
++--------+----------------+------+------+--------+
+
+select * from student order by avg desc;
++--------+----------------+------+------+--------+
+| adm_no | name           | avg  | sex  | s_code |
++--------+----------------+------+------+--------+
+|    501 | R.Jain         |   98 | M    |    111 |
+|    705 | K.Rashika      |   85 | F    |    111 |
+|    935 | Rohan Saini    |   85 | M    |    222 |
+|    983 | Sneha Aggarwal |   80 | F    |    222 |
+|    892 | Sahil Jain     |   78 | M    |    333 |
+|    545 | Kavitha        |   73 | F    |    333 |
+|    955 | Anjali         |   64 | F    |    444 |
+|    754 | Rahul Goel     |   60 | M    |    444 |
++--------+----------------+------+------+--------+
+
+select name from student where name like 'K%';
++-----------+
+| name      |
++-----------+
+| Kavitha   |
+| K.Rashika |
++-----------+
+
+select name from student where name like '%i';
++-------------+
+| name        |
++-------------+
+| Rohan Saini |
+| Anjali      |
++-------------+
+
+select adm_no,name,avg*5 as total_marks from student;
++--------+----------------+-------------+
+| adm_no | name           | total_marks |
++--------+----------------+-------------+
+|    501 | R.Jain         |         490 |
+|    545 | Kavitha        |         365 |
+|    705 | K.Rashika      |         425 |
+|    754 | Rahul Goel     |         300 |
+|    892 | Sahil Jain     |         390 |
+|    935 | Rohan Saini    |         425 |
+|    955 | Anjali         |         320 |
+|    983 | Sneha Aggarwal |         400 |
++--------+----------------+-------------+
+
+select * from student where avg between 80 and 90;
++--------+----------------+------+------+--------+
+| adm_no | name           | avg  | sex  | s_code |
++--------+----------------+------+------+--------+
+|    705 | K.Rashika      |   85 | F    |    111 |
+|    935 | Rohan Saini    |   85 | M    |    222 |
+|    983 | Sneha Aggarwal |   80 | F    |    222 |
++--------+----------------+------+------+--------+
+
+ select * from student where avg>80 and s_code=333;
+Empty set (0.00 sec)
+
+select name,avg from student where s_code=222 or s_code=333;
++----------------+------+
+| name           | avg  |
++----------------+------+
+| Kavitha        |   73 |
+| Sahil Jain     |   78 |
+| Rohan Saini    |   85 |
+| Sneha Aggarwal |   80 |
++----------------+------+
+
+select sum(avg) from student;
++----------+
+| sum(avg) |
++----------+
+|      623 |
++----------+
+
+select max(avg) from student;
++----------+
+| max(avg) |
++----------+
+|       98 |
++----------+
+
+
+select min(avg) from student;
++----------+
+| min(avg) |
++----------+
+|       60 |
++----------+
+
+select avg(avg) from student;
++----------+
+| avg(avg) |
++----------+
+|  77.8750 |
++----------+
+
+select max(avg),min(avg),sum(avg) from student  where s_code=333;
++----------+----------+----------+
+| max(avg) | min(avg) | sum(avg) |
++----------+----------+----------+
+|       78 |       73 |      151 |
++----------+----------+----------+
+
+ select s_code,count(name) from student group by s_code;
++--------+-------------+
+| s_code | count(name) |
++--------+-------------+
+|    111 |           2 |
+|    333 |           2 |
+|    444 |           2 |
+|    222 |           2 |
++--------+-------------+
+
+
+
+
+
+
+
+
