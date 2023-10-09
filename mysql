@@ -9,7 +9,7 @@ insert into student values(935,'Rohan Saini',85,'M',222);
 insert into student values(955,'Anjali',64,'F',444);
 insert into student values(983,'Sneha Aggarwal',80,'F',222);
 
-select * from student;
+1) select * from student;
 +--------+----------------+------+------+--------+
 | adm_no | name           | avg  | sex  | s_code |
 +--------+----------------+------+------+--------+
@@ -23,28 +23,28 @@ select * from student;
 |    983 | Sneha Aggarwal |   80 | F    |    222 |
 +--------+----------------+------+------+--------+
 
-select * from student where(name="Rohan Saini");
+2) select * from student where(name="Rohan Saini");
 +--------+-------------+------+------+--------+
 | adm_no | name        | avg  | sex  | s_code |
 +--------+-------------+------+------+--------+
 |    935 | Rohan Saini |   85 | M    |    222 |
 +--------+-------------+------+------+--------+
 
-select count(name) from student;
+3) select count(name) from student;
 +-------------+
 | count(name) |
 +-------------+
 |           8 |
 +-------------+
 
-select count(sex) from student where(sex="M");
+4) select count(sex) from student where(sex="M");
 +------------+
 | count(sex) |
 +------------+
 |          4 |
 +------------+
 
-select count(sex) from student where(sex="F");
+4) select count(sex) from student where(sex="F");
 +------------+
 | count(sex) |
 +------------+
@@ -52,7 +52,7 @@ select count(sex) from student where(sex="F");
 +------------+
 
 
-select * from student order by name;
+5) select * from student order by name;
 +--------+----------------+------+------+--------+
 | adm_no | name           | avg  | sex  | s_code |
 +--------+----------------+------+------+--------+
@@ -66,7 +66,7 @@ select * from student order by name;
 |    983 | Sneha Aggarwal |   80 | F    |    222 |
 +--------+----------------+------+------+--------+
 
-select * from student order by avg desc;
+6) select * from student order by avg desc;
 +--------+----------------+------+------+--------+
 | adm_no | name           | avg  | sex  | s_code |
 +--------+----------------+------+------+--------+
@@ -80,7 +80,7 @@ select * from student order by avg desc;
 |    754 | Rahul Goel     |   60 | M    |    444 |
 +--------+----------------+------+------+--------+
 
-select name from student where name like 'K%';
+7) select name from student where name like 'K%';
 +-----------+
 | name      |
 +-----------+
@@ -88,7 +88,7 @@ select name from student where name like 'K%';
 | K.Rashika |
 +-----------+
 
-select name from student where name like '%i';
+8) select name from student where name like '%i';
 +-------------+
 | name        |
 +-------------+
@@ -96,7 +96,7 @@ select name from student where name like '%i';
 | Anjali      |
 +-------------+
 
-select adm_no,name,avg*5 as total_marks from student;
+9) select adm_no,name,avg*5 as total_marks from student;
 +--------+----------------+-------------+
 | adm_no | name           | total_marks |
 +--------+----------------+-------------+
@@ -110,7 +110,7 @@ select adm_no,name,avg*5 as total_marks from student;
 |    983 | Sneha Aggarwal |         400 |
 +--------+----------------+-------------+
 
-select * from student where avg between 80 and 90;
+10) select * from student where avg between 80 and 90;
 +--------+----------------+------+------+--------+
 | adm_no | name           | avg  | sex  | s_code |
 +--------+----------------+------+------+--------+
@@ -119,10 +119,10 @@ select * from student where avg between 80 and 90;
 |    983 | Sneha Aggarwal |   80 | F    |    222 |
 +--------+----------------+------+------+--------+
 
- select * from student where avg>80 and s_code=333;
+11) select * from student where avg>80 and s_code=333;
 Empty set (0.00 sec)
 
-select name,avg from student where s_code=222 or s_code=333;
+12) select name,avg from student where s_code=222 or s_code=333;
 +----------------+------+
 | name           | avg  |
 +----------------+------+
@@ -132,14 +132,14 @@ select name,avg from student where s_code=222 or s_code=333;
 | Sneha Aggarwal |   80 |
 +----------------+------+
 
-select sum(avg) from student;
+13) select sum(avg) from student;
 +----------+
 | sum(avg) |
 +----------+
 |      623 |
 +----------+
 
-select max(avg) from student;
+14) select max(avg) from student;
 +----------+
 | max(avg) |
 +----------+
@@ -147,28 +147,28 @@ select max(avg) from student;
 +----------+
 
 
-select min(avg) from student;
+15) select min(avg) from student;
 +----------+
 | min(avg) |
 +----------+
 |       60 |
 +----------+
 
-select avg(avg) from student;
+16) select avg(avg) from student;
 +----------+
 | avg(avg) |
 +----------+
 |  77.8750 |
 +----------+
 
-select max(avg),min(avg),sum(avg) from student  where s_code=333;
+17) select max(avg),min(avg),sum(avg) from student  where s_code=333;
 +----------+----------+----------+
 | max(avg) | min(avg) | sum(avg) |
 +----------+----------+----------+
 |       78 |       73 |      151 |
 +----------+----------+----------+
 
- select s_code,count(name) from student group by s_code;
+ 18) select s_code,count(name) from student group by s_code;
 +--------+-------------+
 | s_code | count(name) |
 +--------+-------------+
