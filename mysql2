@@ -297,4 +297,66 @@ oup by department order by avg(salary);
 |      3 | Philip     |   2000 |
 |      1 | Bob        |   8000 |
 +--------+------------+--------+
+29) select salary,case when First_name='Bob' then salary * 0.20
+when first_name = 'alex' then salary * 0.10 else salary * 0.15 end
+as calculated_percetage from salary_table;
++---------+----------------------+
+| salary  | calculated_percetage |
++---------+----------------------+
+|  100000 |             20000.00 |
+|  600000 |             90000.00 |
+|  890000 |            133500.00 |
+|  200000 |             30000.00 |
+|  220000 |             33000.00 |
+|  900000 |             90000.00 |
+| 1200000 |            180000.00 |
++---------+----------------------+
+30)  select case when department = 'IT' then 'IT SERVICES' when department = 'Finanace' then 'Financial services' when department = 'Banking' then 'Banking services' else department end as department from salary_table;
++------------------+
+| department       |
++------------------+
+| Finance          |
+| IT SERVICES      |
+| Banking services |
+| Insurance        |
+| Finance          |
+| IT SERVICES      |
+| Banking services |
++------------------+
 
+32) select First_name,amount from salary_table join reward on salary_table.emp_id = reward.employee_ref_id where reward.amount is not null;
++------------+--------+
+| First_name | amount |
++------------+--------+
+| Bob        |   1000 |
+| Jerry      |   5000 |
+| Philip     |   2000 |
+| Bob        |   8000 |
++------------+--------+
+
+33) update reward set amount = 1000 where employee_ref_id = (select emp_id from salary_table where First_name = 'Bob');
+Query OK, 1 row affected (0.24 sec)
+Rows matched: 2  Changed: 1  Warnings: 0
+
+mysql> select * from reward;
++-----------------+----------------+--------+
+| employee_ref_id | date_of_reward | amount |
++-----------------+----------------+--------+
+|               1 | 2019-05-11     |   1000 |
+|               2 | 2019-02-15     |   5000 |
+|               3 | 2019-04-22     |   2000 |
+|               1 | 2019-06-20     |   1000 |
++-----------------+----------------+--------+
+ select salary_table.First_name, ifnull(reward.amount,0) as reward_amount from salary_table left join reward on salary_table.emp_id = reward.employee_ref_id;
++------------+---------------+
+| First_name | reward_amount |
++------------+---------------+
+| Bob        |          1000 |
+| Bob        |          1000 |
+| Jerry      |          5000 |
+| Philip     |          2000 |
+| John       |             0 |
+| Michael    |             0 |
+| Alex       |             0 |
+| Yohan      |             0 |
++------------+---------------+
